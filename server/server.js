@@ -1,4 +1,10 @@
+const path = require('path');
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
 const { Server } = require('socket.io');
+const io = new Server(server);
 
 const EVENTS = {
     CONNECTION: 'connection',
@@ -9,9 +15,17 @@ const EVENTS = {
     ONLINE_USERS: 'online-users'
 };
 
-const io = new Server({ cors: { origin: '*' } });
-const port = 3001;
+const port = process.env.PORT || 3001;
+const publicPath = path.join(__dirname, '..', 'build');
+
+
 const clients = {};
+
+app.use(express.static(publicPath));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+});
 
 io.on(EVENTS.CONNECTION, (socket) => {
     clients[socket.id] = socket;
@@ -43,4 +57,6 @@ io.on(EVENTS.CONNECTION, (socket) => {
     socket.broadcast.emit(EVENTS.USER_CONNECTED, socket.id);
 });
 
-io.listen(port);
+server.listen(port, () => {
+    console.log(`Server is up on port ${port}!`);
+});

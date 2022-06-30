@@ -15,10 +15,8 @@ const EVENTS = {
     ONLINE_USERS: 'online-users'
 };
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 const publicPath = path.join(__dirname, '..', 'build');
-
-
 const clients = {};
 
 app.use(express.static(publicPath));

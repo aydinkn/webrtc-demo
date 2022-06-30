@@ -8,7 +8,7 @@ import UserSelect from './UserSelect';
 import './App.css';
 
 const rtcPeerConnection = new RTCPeerConnection({ iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] });
-const socket = io('http://localhost:3001');
+const socket = io();
 const initialValue = { socket, rtcPeerConnection };
 
 function App() {

@@ -1,0 +1,9 @@
+.session-description {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.session-description textarea {
+    height: 100px;
+}

@@ -1,0 +1,9 @@
+.ice-candidate {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.ice-candidate textarea {
+    height: 250px;
+}

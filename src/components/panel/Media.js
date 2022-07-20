@@ -38,7 +38,7 @@ const Media = ({isLocal}) => {
 
     return (
         <div className="video">
-            <video ref={videoRef} muted></video>
+            <video ref={videoRef}></video>
         </div>
     );
 };

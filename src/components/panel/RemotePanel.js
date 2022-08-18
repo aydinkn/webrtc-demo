@@ -1,9 +1,10 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import AppContext from "../../contexts/AppContext";
-import Media from "./Media";
-import SessionDescription from "./SessionDescription";
-import IceCandidate from "./IceCandidate";
+import { useCallback, useContext, useEffect, useState } from 'react';
+import AppContext from '../../contexts/AppContext';
+import Media from './Media';
+import SessionDescription from './SessionDescription';
+import IceCandidate from './IceCandidate';
 import { SOCKET_EVENTS, MESSAGE_DATA_TYPES } from '../../constants';
+import { Chat } from './Chat';
 
 const RemotePanel = () => {
     const { rtcPeerConnection, socket, setIsCaller } = useContext(AppContext);
@@ -36,6 +37,7 @@ const RemotePanel = () => {
     return (
         <div className="panel remote">
             <Media />
+            <Chat />
             <SessionDescription sdp={sessionDescription?.sdp} />
             <IceCandidate iceCandidates={iceCandidates} />
         </div>

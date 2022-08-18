@@ -1,9 +1,10 @@
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import AppContext from "../../contexts/AppContext";
-import IceCandidate from "./IceCandidate";
-import Media from "./Media";
-import SessionDescription from "./SessionDescription";
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import AppContext from '../../contexts/AppContext';
+import IceCandidate from './IceCandidate';
+import Media from './Media';
+import SessionDescription from './SessionDescription';
 import { SOCKET_EVENTS, MESSAGE_DATA_TYPES, RTC_PEER_CONNECTION_EVENTS } from '../../constants';
+import { Chat } from './Chat';
 
 const LocalPanel = () => {
     const { rtcPeerConnection, socket, selectedUser, isCaller } = useContext(AppContext);
@@ -49,6 +50,7 @@ const LocalPanel = () => {
         <div className="panel local">
             <Media isLocal />
             <button onClick={onClickHandler}>Create {isCaller ? 'Offer' : 'Answer'}</button>
+            <Chat isLocal />
             <SessionDescription isLocal sdp={sessionDescription?.sdp} />
             <IceCandidate isLocal iceCandidates={iceCandidates} />
         </div>
